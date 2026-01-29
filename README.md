@@ -119,6 +119,11 @@ The frontend will be available at `http://localhost:8080`
 ```bash
 cd backend
 pip install -r requirements.txt
+# Install Pytorch CUDA
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu130
+# Check if CUDA is available
+python -c 'import torch; print(torch.cuda.is_available())'
+# Run the backend
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
