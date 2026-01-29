@@ -1,0 +1,15 @@
+# Core ML/CV frameworks
+ultralytics>=8.0.0
+torch
+torchvision
+numpy>=1.24.0
+
+# Data validation and models
+pydantic>=2.0.0
+pydantic-settings
+
+# Geometry and shape operations
+shapely>=2.0.0
+
+# Optional: Dataset annotation formats
+# pycocotools                   # For COCO dataset format (uncomment if needed)
