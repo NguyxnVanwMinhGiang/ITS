@@ -13,11 +13,13 @@ VEHICLE_ONLY_CLASSES = {"car", "motorcycle", "bus", "truck", "bicycle"}
 # Thresholds based on absolute flow rate (xe/giờ)
 # <3500 = light, 3500-6500 = medium, >6500 = heavy
 DENSITY_THRESHOLDS = {
-    "heavy": 6500,
-    "medium": 3500,
+    "overload": 4500,
+    "heavy": 3000,
+    "medium": 1500,
 }
 
 DENSITY_LABELS = {
+    "overload": "Quá tải",
     "heavy": "Cao",
     "medium": "Trung bình",
     "light": "Ít",
@@ -146,8 +148,11 @@ class TrafficDensityTracker:
             percentage = 50.0
         
         # Determine density level based on absolute flow rate thresholds
-        # >6500 = heavy (Cao), 3500-6500 = medium (Trung bình), <3500 = light (Ít)
-        if flow_rate >= DENSITY_THRESHOLDS["heavy"]:
+        # >4500 = overload (Quá tải), 3000-4500 = heavy (Cao),
+        # 1500-3000 = medium (Trung bình), <1500 = light (Ít)
+        if flow_rate >= DENSITY_THRESHOLDS["overload"]:
+            density_level = "overload"
+        elif flow_rate >= DENSITY_THRESHOLDS["heavy"]:
             density_level = "heavy"
         elif flow_rate >= DENSITY_THRESHOLDS["medium"]:
             density_level = "medium"
